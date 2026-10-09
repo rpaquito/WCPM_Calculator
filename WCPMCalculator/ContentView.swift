@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             TestView().tabItem { Label("Test", systemImage: "stopwatch") }
-            Text("Results").tabItem { Label("Results", systemImage: "chart.line.uptrend.xyaxis") }
+            ResultsView().tabItem { Label("Results", systemImage: "chart.line.uptrend.xyaxis") }
             OptionsView().tabItem { Label("Options", systemImage: "gearshape") }
         }
         .environment(\.locale, Locale(identifier: language))

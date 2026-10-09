@@ -44,12 +44,13 @@ WCPMCalculator/
   Models.swift              Profile, ReadingTest, TestResult, WCPM calculation
   ContentView.swift         AppLanguage enum + root TabView (Test / Results / Options)
   OptionsView.swift         Language picker and profile add / rename / delete
+  ResultsView.swift         Results tab: tests list per profile, TestDetailView (chart + history)
   TestView.swift            Test tab: setup form, RunConfig, RunView (stopwatch + result entry)
   Localizable.xcstrings     String catalog (en, pt-PT)
 WCPMCalculatorTests/
   WCPMTests.swift           Swift Testing unit tests for WCPM math and validation
 WCPMCalculatorUITests/
-  FlowUITests.swift         XCUITest smoke test: add profile, run test, save result
+  FlowUITests.swift         XCUITest smoke test: add profile, run test, save result, view and delete it in Results
 ```
 
 ### Data model
@@ -91,7 +92,7 @@ The shared scheme in `xcshareddata/xcschemes` lists both test targets so `xcodeb
 1. Done: scaffold, models, WCPM function, unit tests.
 2. Done: tab shell, Options tab, profile CRUD, language switch.
 3. Done: Test tab. A `ReadingTest` is created only when a run is saved (`RunConfig` carries the pending data), so abandoned runs leave nothing behind. Stop is ignored in the first second. The screen stays awake while running. `FlowUITests` covers the happy path; the Portuguese UI and the chart-feeding data are not covered.
-4. Next: Results tab: profile picker, tests list, per-test detail with a Swift Charts WCPM-over-time chart and results list (date, time, wrong words, WCPM), swipe to delete.
-5. Polish: remaining pt-PT strings, Dynamic Type, dark mode.
+4. Done: Results tab. Profile picker, tests list (latest WCPM, result count), per-test Swift Charts line chart and history; swipe deletes a result (no confirmation) or a test (confirmation). Data is covered by the UI smoke test; chart appearance is not checked.
+5. Next: Polish: remaining pt-PT strings, Dynamic Type, dark mode.
 
 Future, explicitly out of scope for now: CSV / share export, iCloud sync.

@@ -69,3 +69,8 @@ extension TimeInterval {
         return String(format: "%02d:%02d", s / 60, s % 60)
     }
 }
+
+extension Double {
+    /// One fractional digit, e.g. 63.3.
+    var oneDecimal: String { formatted(.number.precision(.fractionLength(1))) }
+}

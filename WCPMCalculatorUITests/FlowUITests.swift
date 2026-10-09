@@ -40,5 +40,18 @@ final class FlowUITests: XCTestCase {
         // Back on setup with the new test selected (redo ready)
         XCTAssertTrue(app.buttons["Start test"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["Passage 1"].exists || app.buttons["Passage 1"].exists)
+    
+
+        // Results: test listed, history has one entry, swipe-delete removes it
+        app.tabBars.buttons["Results"].tap()
+        let row = app.cells.containing(.staticText, identifier: "Passage 1").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 3))
+        row.tap()
+        XCTAssertTrue(app.staticTexts["Progress"].waitForExistence(timeout: 3))
+        let entries = app.cells.containing(NSPredicate(format: "label CONTAINS 'wrong'"))
+        XCTAssertEqual(entries.count, 1)
+        entries.firstMatch.swipeLeft()
+        app.buttons["Delete"].tap()
+        XCTAssertEqual(entries.count, 0)
     }
 }

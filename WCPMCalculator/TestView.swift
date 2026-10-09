@@ -142,8 +142,7 @@ struct RunView: View {
                 LabeledContent("Words", value: "\(config.wordCount)")
                 TextField("Wrong words", text: $wrongText).keyboardType(.numberPad)
                 LabeledContent("WCPM", value: isValid
-                    ? WCPM.compute(wordCount: config.wordCount, wrongWords: wrongWords ?? 0, duration: elapsed)
-                        .formatted(.number.precision(.fractionLength(1)))
+                    ? WCPM.compute(wordCount: config.wordCount, wrongWords: wrongWords ?? 0, duration: elapsed).oneDecimal
                     : "–")
                 Button("Save", action: save).disabled(!isValid)
                 Button("Discard", role: .destructive) { dismiss() }
