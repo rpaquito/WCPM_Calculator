@@ -561,6 +561,38 @@
           }
         }
       }
+    },
+    "Date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        }
+      }
+    },
+    "Result": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Result"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultado"
+          }
+        }
+      }
     }
   }
 }

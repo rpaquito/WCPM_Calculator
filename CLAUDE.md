@@ -71,6 +71,7 @@ WCPMCalculatorUITests/
 
 - Tabs use `.tabItem`, not the `Tab` type (`Tab` requires iOS 18; deployment target is 17).
 - Language is chosen in-app and stored in `@AppStorage("language")` (`"en"` or `"pt-PT"`). `ContentView` applies it with `.environment(\.locale, ...)`. Views use plain `Text("Key")` / `Button("Key")` so the catalog resolves them. For strings built outside a view, use `String(localized:locale:)` with the same locale.
+- `SWIFT_EMIT_LOC_STRINGS = YES` is set on the app target. To audit the catalog after adding views, build, then compare keys in `build/**/*.stringsdata` against `Localizable.xcstrings` (the build does not edit the catalog itself).
 - Language names (`English`, `Português`) are shown untranslated on purpose.
 - Every new user-facing string needs an entry in `Localizable.xcstrings` with both `en` and `pt-PT` values.
 - Persisted state goes through SwiftData. Per-device preferences (language, active profile) go in `@AppStorage`.
@@ -93,6 +94,6 @@ The shared scheme in `xcshareddata/xcschemes` lists both test targets so `xcodeb
 2. Done: tab shell, Options tab, profile CRUD, language switch.
 3. Done: Test tab. A `ReadingTest` is created only when a run is saved (`RunConfig` carries the pending data), so abandoned runs leave nothing behind. Stop is ignored in the first second. The screen stays awake while running. `FlowUITests` covers the happy path; the Portuguese UI and the chart-feeding data are not covered.
 4. Done: Results tab. Profile picker, tests list (latest WCPM, result count), per-test Swift Charts line chart and history; swipe deletes a result (no confirmation) or a test (confirmation). Data is covered by the UI smoke test; chart appearance is not checked.
-5. Next: Polish: remaining pt-PT strings, Dynamic Type, dark mode.
+5. Done: Polish (pt-PT screens, dark mode and the largest Dynamic Type size checked via screenshots). Remaining ideas, not started: remaining pt-PT strings, Dynamic Type, dark mode.
 
 Future, explicitly out of scope for now: CSV / share export, iCloud sync.

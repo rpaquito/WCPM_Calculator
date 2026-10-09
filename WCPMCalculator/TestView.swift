@@ -140,7 +140,13 @@ struct RunView: View {
             Form {
                 LabeledContent("Time", value: elapsed.clock)
                 LabeledContent("Words", value: "\(config.wordCount)")
-                TextField("Wrong words", text: $wrongText).keyboardType(.numberPad)
+                LabeledContent("Wrong words") {
+                    TextField("0", text: $wrongText)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                        .accessibilityLabel("Wrong words")
+                        .accessibilityIdentifier("wrongWords")
+                }
                 LabeledContent("WCPM", value: isValid
                     ? WCPM.compute(wordCount: config.wordCount, wrongWords: wrongWords ?? 0, duration: elapsed).oneDecimal
                     : "–")

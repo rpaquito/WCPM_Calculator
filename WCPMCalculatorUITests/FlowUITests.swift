@@ -30,7 +30,7 @@ final class FlowUITests: XCTestCase {
         app.buttons["Stop"].tap()
 
         // Enter wrong words and save
-        let wrong = app.textFields["Wrong words"]
+        let wrong = app.textFields["wrongWords"]
         XCTAssertTrue(wrong.waitForExistence(timeout: 3))
         wrong.tap()
         wrong.typeText("5")

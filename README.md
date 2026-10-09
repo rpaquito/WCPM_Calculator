@@ -4,7 +4,7 @@ A native iOS app for measuring reading fluency in **words correct per minute (WC
 
 Available in English and Portuguese (Portugal).
 
-> **Status:** in development. Profiles, language switching, the WCPM calculation and the test timer are in place. The results screens are in place; polish remains. See [Roadmap](#roadmap).
+> **Status:** in development. Profiles, language switching, the WCPM calculation and the test timer are in place. The results screens are in place; polish is done. See [Roadmap](#roadmap).
 
 ## Features
 
@@ -79,5 +79,5 @@ The app ships in English (`en`) and European Portuguese (`pt-PT`). Choose the la
 - [x] Options: language switch and profile add / rename / delete
 - [x] Test tab: setup form, stopwatch, wrong-words entry, save
 - [x] Results tab: per-profile tests, history list, progress chart, delete
-- [ ] Polish: complete Portuguese strings, Dynamic Type, dark mode
+- [x] Polish: complete Portuguese strings, Dynamic Type, dark mode
 - [ ] Future: export results (CSV / share sheet), iCloud sync
