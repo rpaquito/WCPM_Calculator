@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            Text("Test").tabItem { Label("Test", systemImage: "stopwatch") }
+            TestView().tabItem { Label("Test", systemImage: "stopwatch") }
             Text("Results").tabItem { Label("Results", systemImage: "chart.line.uptrend.xyaxis") }
             OptionsView().tabItem { Label("Options", systemImage: "gearshape") }
         }

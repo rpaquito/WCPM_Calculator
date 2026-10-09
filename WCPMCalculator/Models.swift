@@ -61,3 +61,11 @@ enum WCPM {
         duration > 0 && wordCount >= 1 && (0...wordCount).contains(wrongWords)
     }
 }
+
+extension TimeInterval {
+    /// `mm:ss`, e.g. 83.4 -> "01:23".
+    var clock: String {
+        let s = Int(self)
+        return String(format: "%02d:%02d", s / 60, s % 60)
+    }
+}

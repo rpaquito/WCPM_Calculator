@@ -4,7 +4,7 @@ A native iOS app for measuring reading fluency in **words correct per minute (WC
 
 Available in English and Portuguese (Portugal).
 
-> **Status:** in development. Profiles, language switching and the WCPM calculation are in place. The test timer and the results screens are being built. See [Roadmap](#roadmap).
+> **Status:** in development. Profiles, language switching, the WCPM calculation and the test timer are in place. The results screens are being built. See [Roadmap](#roadmap).
 
 ## Features
 
@@ -58,9 +58,12 @@ WCPMCalculator/
   Models.swift              Profile, ReadingTest, TestResult, WCPM calculation
   ContentView.swift         Root tab view and language setting
   OptionsView.swift         Language and profile management
+  TestView.swift            Test setup, stopwatch and result entry
   Localizable.xcstrings     English and Portuguese strings
 WCPMCalculatorTests/
   WCPMTests.swift           Unit tests (Swift Testing)
+WCPMCalculatorUITests/
+  FlowUITests.swift         End-to-end smoke test
 ```
 
 Data is stored locally on the device with SwiftData: a profile has many tests, and a test has many results. Deleting a profile or test deletes everything under it (the app asks for confirmation first).
@@ -73,7 +76,7 @@ The app ships in English (`en`) and European Portuguese (`pt-PT`). Choose the la
 
 - [x] Project scaffold, data model, WCPM calculation and tests
 - [x] Options: language switch and profile add / rename / delete
-- [ ] Test tab: setup form, stopwatch, wrong-words entry, save
+- [x] Test tab: setup form, stopwatch, wrong-words entry, save
 - [ ] Results tab: per-profile tests, history list, progress chart, delete
 - [ ] Polish: complete Portuguese strings, Dynamic Type, dark mode
 - [ ] Future: export results (CSV / share sheet), iCloud sync

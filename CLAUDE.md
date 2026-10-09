@@ -16,7 +16,7 @@ Native iOS app that calculates reading fluency as WCPM (words correct per minute
 Run from the repository root. Xcode 26 is installed; there is no `xcodegen`.
 
 ```sh
-# Build + run unit tests (simulator, no code signing)
+# Build + run unit and UI tests (simulator, no code signing; UI test takes ~20s)
 xcodebuild test -project WCPMCalculator.xcodeproj -scheme WCPMCalculator \
   -destination 'platform=iOS Simulator,name=iPhone 17' \
   -derivedDataPath build CODE_SIGNING_ALLOWED=NO
@@ -44,9 +44,12 @@ WCPMCalculator/
   Models.swift              Profile, ReadingTest, TestResult, WCPM calculation
   ContentView.swift         AppLanguage enum + root TabView (Test / Results / Options)
   OptionsView.swift         Language picker and profile add / rename / delete
+  TestView.swift            Test tab: setup form, RunConfig, RunView (stopwatch + result entry)
   Localizable.xcstrings     String catalog (en, pt-PT)
 WCPMCalculatorTests/
   WCPMTests.swift           Swift Testing unit tests for WCPM math and validation
+WCPMCalculatorUITests/
+  FlowUITests.swift         XCUITest smoke test: add profile, run test, save result
 ```
 
 ### Data model
@@ -75,6 +78,8 @@ WCPMCalculatorTests/
 
 ## Xcode project file
 
+The shared scheme in `xcshareddata/xcschemes` lists both test targets so `xcodebuild test` runs unit and UI tests; keep it in sync if targets change.
+
 `WCPMCalculator.xcodeproj/project.pbxproj` was written by hand using file-system synchronized groups (`PBXFileSystemSynchronizedRootGroup`, objectVersion 77). Consequences:
 
 - New `.swift` files and resources placed under `WCPMCalculator/` or `WCPMCalculatorTests/` are picked up automatically. Do not edit `project.pbxproj` to add files.
@@ -84,9 +89,9 @@ WCPMCalculatorTests/
 ## Status and roadmap
 
 1. Done: scaffold, models, WCPM function, unit tests.
-2. Done (build verified, UI not yet exercised by hand): tab shell, Options tab, profile CRUD, language switch.
-3. Next: Test tab. Profile picker, new or existing test, setup form (name, optional details, word count), large start/stop button with `mm:ss` display, wrong-words entry sheet, save. Block stop in the first second. Keep the screen awake while running.
-4. Results tab: profile picker, tests list, per-test detail with a Swift Charts WCPM-over-time chart and results list (date, time, wrong words, WCPM), swipe to delete.
+2. Done: tab shell, Options tab, profile CRUD, language switch.
+3. Done: Test tab. A `ReadingTest` is created only when a run is saved (`RunConfig` carries the pending data), so abandoned runs leave nothing behind. Stop is ignored in the first second. The screen stays awake while running. `FlowUITests` covers the happy path; the Portuguese UI and the chart-feeding data are not covered.
+4. Next: Results tab: profile picker, tests list, per-test detail with a Swift Charts WCPM-over-time chart and results list (date, time, wrong words, WCPM), swipe to delete.
 5. Polish: remaining pt-PT strings, Dynamic Type, dark mode.
 
 Future, explicitly out of scope for now: CSV / share export, iCloud sync.
